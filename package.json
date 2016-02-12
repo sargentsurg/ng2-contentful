@@ -3,18 +3,46 @@
   "version": "1.0.0",
   "description": "Contentful module for angular2",
   "main": "index.js",
+  "scripts": {
+    "serve:dev": "./node_modules/.bin/webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
+    "start": "npm run serve:dev",
+    "postinstall": "./node_modules/.bin/typings install",
+    "test": "NODE_ENV=test ./node_modules/.bin/karma start"
+  },
+  "peerDependencies": {
+    "angular2": "2.0.0-beta.3"
+  },
   "dependencies": {},
   "devDependencies": {
-    "angular2": "^2.0.0-beta.3",
+    "angular2": "2.0.0-beta.3",
+    "compression-webpack-plugin": "^0.3.0",
+    "concurrent": "^0.3.2",
+    "copy-webpack-plugin": "^1.1.1",
+    "css-loader": "^0.23.1",
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.33.13",
-    "reflect-metadata": "^0.1.2",
-    "rxjs": "^5.0.0-beta.0",
+    "html-webpack-plugin": "^2.8.1",
+    "jasmine": "2.4.1",
+    "karma": "0.13.19",
+    "karma-chrome-launcher": "0.2.2",
+    "karma-coverage": "^0.5.3",
+    "karma-jasmine": "0.3.7",
+    "karma-phantomjs-launcher": "1.0.0",
+    "karma-sourcemap-loader": "0.3.7",
+    "karma-spec-reporter": "0.0.24",
+    "karma-webpack": "1.7.0",
+    "node-sass": "^3.4.2",
+    "phantomjs-prebuilt": "^2.1.4",
+    "raw-loader": "^0.5.1",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.0",
+    "sass-loader": "^3.1.2",
+    "style-loader": "^0.13.0",
+    "ts-loader": "^0.8.1",
+    "typescript": "^1.7.5",
     "webpack": "^1.12.13",
-    "zone.js": "^0.5.11"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "webpack-dev-server": "^1.14.1",
+    "zone.js": "0.5.11"
   },
   "repository": {
     "type": "git",
