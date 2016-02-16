@@ -14,12 +14,16 @@ import {ContentTypesComponent} from "../content-types/content-types.component";
     <div class="form">
       <div class="field">
         <label for="space">Space ID</label>
-        <input type="text" name="space" [(ngModel)]="model.space"/>
+        <input type="text"
+               name="space"
+               [(ngModel)]="model.space"/>
       </div>
 
       <div class="field">
         <label for="accessToken">Access Token</label>
-        <input type="text" name="accessToken" [(ngModel)]="model.accessToken"/>
+        <input type="text"
+               name="accessToken"
+               [(ngModel)]="model.accessToken"/>
       </div>
       <button (click)="saveConfig()">
         Save
@@ -27,13 +31,13 @@ import {ContentTypesComponent} from "../content-types/content-types.component";
     </div>
   `
 })
-export class CredentialsComponent implements OnInit{
+export class CredentialsComponent implements OnInit {
   static RoutingName = 'Credentials';
   private model: IContentfulConfig = {
     space: '', accessToken: ''
   };
 
-  constructor (private _router: Router) {
+  constructor(private _router: Router) {
 
   }
 

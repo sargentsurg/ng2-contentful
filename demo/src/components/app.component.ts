@@ -9,7 +9,6 @@ import {ContentTypesComponent} from "./content-types/content-types.component";
  */
 
 
-
 @Component({
   selector: 'ng2-contentful-demo',
   directives: [...ROUTER_DIRECTIVES],
@@ -26,9 +25,6 @@ import {ContentTypesComponent} from "./content-types/content-types.component";
           <a [routerLink]=" ['ContentTypes'] ">Content types</a>
         </li>
         <li>
-          <a [routerLink]=" ['Entries'] ">Entries</a>
-        </li>
-        <li>
           <a [routerLink]=" ['Assets'] ">Assets</a>
         </li>
       </ul>
@@ -41,19 +37,9 @@ import {ContentTypesComponent} from "./content-types/content-types.component";
 @RouteConfig([
   {path: '/', component: CredentialsComponent, name: 'Credentials', useAsDefault: true},
   {path: '/assets', component: AssetsComponent, name: AssetsComponent.RoutingName},
-  {path: '/entries', component: EntriesComponent, name: EntriesComponent.RoutingName},
+  {path: '/entries/:contentType', component: EntriesComponent, name: EntriesComponent.RoutingName},
   {path: '/content-types', component: ContentTypesComponent, name: ContentTypesComponent.RoutingName},
   {path: '/**', redirectTo: ['Credentials']}
 ])
-export class App implements OnActivate, OnInit{
-  ngOnInit(): any {
-    console.log(this._router);
-    return undefined;
-  }
-  constructor (private _router: Router) {}
-
-  routerOnActivate(next: ComponentInstruction, prev: ComponentInstruction): any {
-    console.log(next, prev);
-    return undefined;
-  }
+export class App {
 }
