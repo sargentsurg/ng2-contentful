@@ -1,8 +1,7 @@
 {
   "name": "ng2-contentful",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "Contentful module for angular2",
-  "main": "index.js",
   "scripts": {
     "serve:dev": "./node_modules/.bin/webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
     "start": "npm run serve:dev",
@@ -12,7 +11,9 @@
   "peerDependencies": {
     "angular2": "2.0.0-beta.3"
   },
-  "dependencies": {},
+  "dependencies": {
+    "angular2": "^2.0.0-beta || 2.0.0"
+  },
   "devDependencies": {
     "angular2": "2.0.0-beta.3",
     "compression-webpack-plugin": "^0.3.0",
