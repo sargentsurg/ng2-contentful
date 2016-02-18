@@ -1,10 +1,7 @@
 import {Component, OnInit} from "angular2/core";
-import {IContentfulConfig, Ng2ContentfulConfig} from "../../../../components/ng2-contentful-config";
 import {Router} from "angular2/router";
 import {ContentTypesComponent} from "../content-types/content-types.component";
-/**
- * Created by dydo on 11/02/16.
- */
+import {IContentfulConfig, Ng2ContentfulConfig} from "../../../../ng2-contentful";
 
 
 @Component({

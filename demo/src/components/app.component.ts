@@ -1,12 +1,9 @@
-import {ROUTER_DIRECTIVES, RouteConfig, OnActivate, Router, ComponentInstruction} from "angular2/router";
-import {Component, OnInit} from "angular2/core";
+import {ROUTER_DIRECTIVES, RouteConfig} from "angular2/router";
+import {Component} from "angular2/core";
 import {CredentialsComponent} from "./credentials/credentials.component";
 import {AssetsComponent} from "./assets/assets.component";
 import {EntriesComponent} from "./entries/entries.component";
 import {ContentTypesComponent} from "./content-types/content-types.component";
-/**
- * Created by dydo on 11/02/16.
- */
 
 
 @Component({
