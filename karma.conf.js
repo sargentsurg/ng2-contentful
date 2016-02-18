@@ -21,9 +21,7 @@ module.exports = function(config) {
 
 
     // list of files to exclude
-    exclude: [
-    ],
-
+    exclude: [],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -40,6 +38,18 @@ module.exports = function(config) {
       module: {
         loaders: [
           {test: /\.ts$/, loader: 'ts-loader', exclude: [/node_modules/]}
+        ],
+        postLoaders: [
+          // instrument only testing sources with Istanbul
+          {
+            test: /\.(js|ts)$/,
+            include: root('components'),
+            loader: 'istanbul-instrumenter-loader',
+            exclude: [
+              /\.e2e\.ts$/,
+              /node_modules/
+            ]
+          }
         ]
       },
       stats: {
@@ -47,10 +57,19 @@ module.exports = function(config) {
         reasons: true
       },
       watch: true,
-      debug: true
+      debug: true,
+      devtool: 'inline-source-map'
     },
     webpackServer: {noInfo: true},
 
+    coverageReporter: {
+      dir: 'coverage/',
+      reporters: [
+        {type: 'text'},
+        {type: 'json'},
+        {type: 'html'}
+      ]
+    },
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
@@ -64,7 +83,6 @@ module.exports = function(config) {
     // enable / disable colors in the output (reporters and logs)
     colors: true,
 
-
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
@@ -73,3 +91,8 @@ module.exports = function(config) {
     singleRun: true
   })
 };
+
+
+function root(p) {
+  return path.join(__dirname, p);
+}
