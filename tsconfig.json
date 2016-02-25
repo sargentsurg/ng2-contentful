@@ -11,5 +11,9 @@
   },
   "exclude": [
     "node_modules"
+  ],
+  "files": [
+    "./ng2-contentful.d.ts",
+    "./ng2-contentful.ts"
   ]
 }

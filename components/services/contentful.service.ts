@@ -5,7 +5,7 @@ import {Ng2ContentfulConfig} from "../ng2-contentful-config";
 
 
 @Injectable()
-export default class ContentfulService {
+export class ContentfulService {
   private static HOST = 'cdn.contentful.com';
 
   constructor(private _http: Http) {

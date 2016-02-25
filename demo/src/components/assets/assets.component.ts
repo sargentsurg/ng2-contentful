@@ -1,8 +1,8 @@
-import {Component, OnInit} from "angular2/core";
-import {CanSeeContentfulData} from "../app.tools";
-import {CanActivate} from "angular2/router";
-import {ContentfulTypes as ct} from "../../../../ng2-contentful";
-import {ContentfulService} from "../../../../ng2-contentful";
+import {Component, OnInit} from 'angular2/core';
+import {CanSeeContentfulData} from '../app.tools';
+import {CanActivate} from 'angular2/router';
+import {ContentfulTypes as ct} from 'ng2-contentful';
+import {ContentfulService} from 'ng2-contentful';
 
 
 @Component({
@@ -41,8 +41,8 @@ export class AssetsComponent implements OnInit {
           this.assets = <ct.Common<ct.Asset>[]> response.json().items;
         },
         error => {
-          this.error = JSON.stringify(error.json())
+          this.error = JSON.stringify(error.json());
         }
-      )
+      );
   }
 }

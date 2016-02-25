@@ -1,15 +1,15 @@
-import {ROUTER_DIRECTIVES, RouteConfig} from "angular2/router";
-import {Component} from "angular2/core";
-import {CredentialsComponent} from "./credentials/credentials.component";
-import {AssetsComponent} from "./assets/assets.component";
-import {EntriesComponent} from "./entries/entries.component";
-import {ContentTypesComponent} from "./content-types/content-types.component";
+import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
+import {Component} from 'angular2/core';
+import {CredentialsComponent} from './credentials/credentials.component';
+import {AssetsComponent} from './assets/assets.component';
+import {EntriesComponent} from './entries/entries.component';
+import {ContentTypesComponent} from './content-types/content-types.component';
 
 
 @Component({
   selector: 'ng2-contentful-demo',
   directives: [...ROUTER_DIRECTIVES],
-  styles: [require('./app.scss')],
+  styles: [<string>require('./app.scss')],
   template: `
     <header>
     <nav>

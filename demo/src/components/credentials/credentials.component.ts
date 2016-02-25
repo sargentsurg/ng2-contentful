@@ -1,11 +1,11 @@
-import {Component, OnInit} from "angular2/core";
-import {Router} from "angular2/router";
-import {ContentTypesComponent} from "../content-types/content-types.component";
-import {IContentfulConfig, Ng2ContentfulConfig} from "../../../../ng2-contentful";
+import {Component, OnInit} from 'angular2/core';
+import {Router} from 'angular2/router';
+import {ContentTypesComponent} from '../content-types/content-types.component';
+import {IContentfulConfig, Ng2ContentfulConfig} from 'ng2-contentful';
 
 
 @Component({
-  styles: [require('./credentials.scss')],
+  styles: [<string> require('./credentials.scss')],
   template: `
     <h2>Credentials</h2>
     <div class="form">
@@ -47,7 +47,7 @@ export class CredentialsComponent implements OnInit {
   saveConfig() {
     if (!this.model || (!this.model.space.length || !this.model.accessToken.length)) {
       console.warn('credentials empty !');
-      return
+      return;
     }
 
     Ng2ContentfulConfig.config = {
@@ -55,6 +55,6 @@ export class CredentialsComponent implements OnInit {
       accessToken: this.model.accessToken
     };
 
-    this._router.navigate([ContentTypesComponent.RoutingName])
+    this._router.navigate([ContentTypesComponent.RoutingName]);
   }
 }

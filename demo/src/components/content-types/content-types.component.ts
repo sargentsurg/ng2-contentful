@@ -1,9 +1,9 @@
 import 'rxjs/add/operator/map';
-import {Component, OnInit} from "angular2/core";
-import {CanActivate, ROUTER_DIRECTIVES} from "angular2/router";
-import {CanSeeContentfulData} from "../app.tools";
-import {ContentfulTypes as ct} from "../../../../ng2-contentful";
-import {ContentfulService} from "../../../../ng2-contentful";
+import {Component, OnInit} from 'angular2/core';
+import {CanActivate, ROUTER_DIRECTIVES} from 'angular2/router';
+import {CanSeeContentfulData} from '../app.tools';
+import {ContentfulTypes as ct} from 'ng2-contentful';
+import {ContentfulService} from 'ng2-contentful';
 
 
 @Component({
@@ -44,8 +44,8 @@ export class ContentTypesComponent implements OnInit {
           this.contentTypes = (<ct.IterableResponse<ct.ContentType>> response.json()).items;
         },
         error => {
-          this.error = JSON.stringify(error.json())
+          this.error = JSON.stringify(error.json());
         }
-      )
+      );
   }
 }

@@ -8,11 +8,12 @@
     "postinstall": "./node_modules/.bin/typings install",
     "test": "./node_modules/.bin/karma start --log-level=DEBUG"
   },
+  "main": "ng2-contentful.js",
   "peerDependencies": {
     "angular2": "^2.0.0-beta || 2.0.0"
   },
   "devDependencies": {
-    "angular2": "2.0.0-beta.3",
+    "angular2": "2.0.0-beta.7",
     "compression-webpack-plugin": "^0.3.0",
     "concurrent": "^0.3.2",
     "copy-webpack-plugin": "^1.1.1",
@@ -36,14 +37,15 @@
     "phantomjs-prebuilt": "^2.1.4",
     "raw-loader": "^0.5.1",
     "reflect-metadata": "0.1.2",
-    "rxjs": "5.0.0-beta.0",
+    "rxjs": "5.0.0-beta.2",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
     "ts-loader": "^0.8.1",
+    "tslint": "^3.5.0",
     "typescript": "^1.7.5",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1",
-    "zone.js": "0.5.11"
+    "zone.js": "0.5.15"
   },
   "repository": {
     "type": "git",
