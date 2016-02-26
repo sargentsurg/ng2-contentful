@@ -6,41 +6,41 @@ export module ContentfulTypes {
 
   // TODO missing space object
   export interface Sys {
-    type: string,
-    id: string,
-    createdAt: string,
-    updatedAt: string,
-    locale?: string,
-    revision: number,
-    space?: any
+    type: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    locale?: string;
+    revision: number;
+    space?: any;
   }
 
   export interface IterableResponse<T> {
-    sys: Object,
-    total: number,
-    skip: number,
-    limit: number,
-    items: Array<T>
+    sys: Object;
+    total: number;
+    skip: number;
+    limit: number;
+    items: Array<T>;
   }
 
   export interface Field {
-    id: string,
-    name: string,
-    type: string,
-    required: boolean,
-    localized: boolean
+    name: string;
+    id: string;
+    type: string;
+    required: boolean;
+    localized: boolean;
   }
 
   export interface ContentType {
-    fields: Array<Field>,
-    name: string,
-    displayField: string,
-    description: string,
-    sys: Sys
+    fields: Array<Field>;
+    name: string;
+    displayField: string;
+    description: string;
+    sys: Sys;
   }
 
   export interface Asset {
-    title: string,
+    title: string;
     file: {
       contentType: string,
       fileName: string,
@@ -48,7 +48,7 @@ export module ContentfulTypes {
       details: {
         size: number
       }
-    }
+    };
   }
 
   /**
@@ -56,7 +56,7 @@ export module ContentfulTypes {
    */
   export interface Common<T> {
     fields: T;
-    sys: Sys
+    sys: Sys;
   }
 }
 

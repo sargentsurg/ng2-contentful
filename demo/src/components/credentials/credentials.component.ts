@@ -39,7 +39,7 @@ export class CredentialsComponent implements OnInit {
   }
 
   ngOnInit(): any {
-    if (Ng2ContentfulConfig.isConfigured) {
+    if (Ng2ContentfulConfig.isConfigured()) {
       this.model = Ng2ContentfulConfig.config;
     }
   }
