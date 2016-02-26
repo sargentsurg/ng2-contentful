@@ -1,7 +1,7 @@
 
 import {appInjector} from '../app-injector';
 import {Router} from 'angular2/router';
-import {Ng2ContentfulConfig} from 'ng2-contentful';
+import {Ng2ContentfulConfig} from 'ng2-contentful.ts';
 import {CredentialsComponent} from './credentials/credentials.component';
 /**
  * Not the best place for that
@@ -10,7 +10,7 @@ import {CredentialsComponent} from './credentials/credentials.component';
 export let CanSeeContentfulData = () => {
   var injector = appInjector();
   let router = injector.get(Router);
-  if (!Ng2ContentfulConfig.isConfigured()) {
+  if (!Ng2ContentfulConfig.isConfigured) {
     router.navigate([CredentialsComponent.RoutingName]);
     return false;
   }

@@ -1,3 +1,5 @@
+/// <reference path="app.d.ts" />
+
 import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 import {Component} from 'angular2/core';
 import {CredentialsComponent} from './credentials/credentials.component';

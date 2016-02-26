@@ -1,8 +1,8 @@
 import {Component, OnInit} from 'angular2/core';
 import {CanSeeContentfulData} from '../app.tools';
 import {CanActivate} from 'angular2/router';
-import {ContentfulTypes as ct} from 'ng2-contentful';
-import {ContentfulService} from 'ng2-contentful';
+import {ContentfulTypes as ct} from 'ng2-contentful.ts';
+import {ContentfulService} from 'ng2-contentful.ts';
 
 
 @Component({

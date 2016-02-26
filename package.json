@@ -3,12 +3,14 @@
   "version": "0.0.3",
   "description": "Contentful module for angular2",
   "scripts": {
+    "install:typings": "./node_modules/.bin/typings install",
     "serve:dev": "./node_modules/.bin/webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
-    "start": "npm run serve:dev",
+    "start": "npm run install:typings && npm run serve:dev",
+    "compile": "./node_modules/.bin/tsc",
     "postinstall": "./node_modules/.bin/typings install",
     "test": "./node_modules/.bin/karma start --log-level=DEBUG"
   },
-  "main": "ng2-contentful.js",
+  "main": "dist/ng-contentful.js",
   "peerDependencies": {
     "angular2": "^2.0.0-beta || 2.0.0"
   },

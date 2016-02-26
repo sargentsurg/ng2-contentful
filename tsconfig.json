@@ -2,18 +2,21 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "moduleResolution": "node",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": false,
-    "noImplicitAny": false
+    "noImplicitAny": true,
+    "declaration": true,
+    "noLib": false,
+    "listFiles": false,
+    "outDir": "dist"
   },
   "exclude": [
     "node_modules"
   ],
   "files": [
-    "./ng2-contentful.d.ts",
+    "./typings/browser.d.ts",
     "./ng2-contentful.ts"
   ]
 }

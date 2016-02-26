@@ -1,5 +1,3 @@
-/// <reference path="./typings/browser.d.ts"/>
-
 // extra declaration for webpack require
 declare var require: {
   <T>(path: string): T;

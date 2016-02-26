@@ -1,7 +1,7 @@
 import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {ContentTypesComponent} from '../content-types/content-types.component';
-import {IContentfulConfig, Ng2ContentfulConfig} from 'ng2-contentful';
+import {IContentfulConfig, Ng2ContentfulConfig} from '../../../../src/ng2-contentful-config';
 
 
 @Component({
@@ -39,7 +39,7 @@ export class CredentialsComponent implements OnInit {
   }
 
   ngOnInit(): any {
-    if (Ng2ContentfulConfig.isConfigured()) {
+    if (Ng2ContentfulConfig.isConfigured) {
       this.model = Ng2ContentfulConfig.config;
     }
   }

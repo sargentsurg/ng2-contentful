@@ -1,9 +1,9 @@
-import {enableProdMode, provide, ComponentRef} from 'angular2/core';
-import {bootstrap, ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/browser';
+import {provide, ComponentRef} from 'angular2/core';
+import {bootstrap} from 'angular2/platform/browser';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 
-const ENV_PROVIDERS = [];
+const ENV_PROVIDERS: any[] = [];
 
 // if ('production' === process.env.ENV) {
 //   enableProdMode();

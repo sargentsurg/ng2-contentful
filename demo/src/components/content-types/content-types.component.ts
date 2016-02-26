@@ -2,8 +2,8 @@ import 'rxjs/add/operator/map';
 import {Component, OnInit} from 'angular2/core';
 import {CanActivate, ROUTER_DIRECTIVES} from 'angular2/router';
 import {CanSeeContentfulData} from '../app.tools';
-import {ContentfulTypes as ct} from 'ng2-contentful';
-import {ContentfulService} from 'ng2-contentful';
+import {ContentfulService} from 'ng2-contentful.ts';
+import {ContentfulTypes as ct} from 'ng2-contentful.ts';
 
 
 @Component({
