@@ -14,6 +14,7 @@ var ng2_contentful_config_1 = require('../ng2-contentful-config');
 var ContentfulService = (function () {
     function ContentfulService(_http) {
         this._http = _http;
+        this._linksLevel = 1;
     }
     ContentfulService.prototype.getContentTypes = function () {
         return this.request('/content_types/');
@@ -43,6 +44,10 @@ var ContentfulService = (function () {
         // TODO should return only one result
         return this.request('/entries/', queryParams);
     };
+    ContentfulService.prototype.withLinksLevel = function (level) {
+        this._linksLevel = level;
+        return this;
+    };
     ContentfulService.prototype.request = function (path, queryParams) {
         if (queryParams === void 0) { queryParams = new http_1.URLSearchParams(); }
         var url = [
@@ -53,6 +58,10 @@ var ContentfulService = (function () {
             path
         ].join('');
         queryParams.set('access_token', ng2_contentful_config_1.Ng2ContentfulConfig.config.accessToken);
+        // set query for links level - this is temporary
+        queryParams.set('include', this._linksLevel.toString());
+        // reset to default value
+        this._linksLevel = 1;
         var options = {
             headers: new http_1.Headers({
                 'Content-Type': 'application/vnd.contentful.delivery.v1+json'

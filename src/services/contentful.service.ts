@@ -7,6 +7,7 @@ import {Ng2ContentfulConfig} from '../ng2-contentful-config';
 @Injectable()
 export class ContentfulService {
   private static HOST = 'cdn.contentful.com';
+  private _linksLevel = 1;
 
   constructor(private _http: Http) {
   }
@@ -54,6 +55,11 @@ export class ContentfulService {
     return this.request('/entries/', queryParams);
   }
 
+  withLinksLevel(level: number): ContentfulService {
+    this._linksLevel = level;
+    return this;
+  }
+
   private request(path: String, queryParams: URLSearchParams = new URLSearchParams()): Observable<Response> {
     let url = [
       'https://',
@@ -66,6 +72,10 @@ export class ContentfulService {
     queryParams.set(
       'access_token', Ng2ContentfulConfig.config.accessToken
     );
+    // set query for links level - this is temporary
+    queryParams.set('include', this._linksLevel.toString());
+    // reset to default value
+    this._linksLevel = 1;
 
     let options: RequestOptionsArgs = {
       headers: new Headers({
