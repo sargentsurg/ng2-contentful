@@ -1,5 +1,5 @@
-import { Http, Response } from "angular2/http";
-import { Observable } from "rxjs/Observable";
+import { Http, Response } from 'angular2/http';
+import { Observable } from 'rxjs/Observable';
 export declare class ContentfulService {
     private _http;
     private static HOST;
@@ -10,5 +10,6 @@ export declare class ContentfulService {
     getAsset(assetId: String): Observable<Response>;
     getEntriesByType(type: string): Observable<Response>;
     getEntry(entryId: string): Observable<Response>;
+    getEntryBySlug(type: string, slug: string): Observable<Response>;
     private request(path, queryParams?);
 }

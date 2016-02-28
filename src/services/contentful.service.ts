@@ -1,7 +1,7 @@
-import {Injectable} from "angular2/core";
-import {Http, Response, RequestOptionsArgs, URLSearchParams, Headers} from "angular2/http";
-import {Observable} from "rxjs/Observable";
-import {Ng2ContentfulConfig} from "../ng2-contentful-config";
+import {Injectable} from 'angular2/core';
+import {Http, Response, RequestOptionsArgs, URLSearchParams, Headers} from 'angular2/http';
+import {Observable} from 'rxjs/Observable';
+import {Ng2ContentfulConfig} from '../ng2-contentful-config';
 
 
 @Injectable()
@@ -20,11 +20,11 @@ export class ContentfulService {
   }
 
   getAssets(): Observable<Response> {
-    return this.request('/assets/')
+    return this.request('/assets/');
   }
 
   getAsset(assetId: String): Observable<Response> {
-    return this.request(`/assets/${assetId}`)
+    return this.request(`/assets/${assetId}`);
   }
 
   getEntriesByType(type: string): Observable<Response> {
@@ -37,6 +37,21 @@ export class ContentfulService {
 
   getEntry(entryId: string): Observable<Response> {
     return this.request(`/entries/${entryId}`);
+  }
+
+  getEntryBySlug(type: string, slug: string): Observable<Response> {
+    let queryParams = new URLSearchParams();
+    queryParams.set(
+      'content_type', type
+    );
+    queryParams.set(
+      'fields.slug', slug
+    );
+    queryParams.set(
+      'limit', '1'
+    );
+    // TODO should return only one result
+    return this.request('/entries/', queryParams);
   }
 
   private request(path: String, queryParams: URLSearchParams = new URLSearchParams()): Observable<Response> {

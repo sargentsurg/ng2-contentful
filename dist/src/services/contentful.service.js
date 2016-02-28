@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("angular2/core");
-var http_1 = require("angular2/http");
-var ng2_contentful_config_1 = require("../ng2-contentful-config");
+var core_1 = require('angular2/core');
+var http_1 = require('angular2/http');
+var ng2_contentful_config_1 = require('../ng2-contentful-config');
 var ContentfulService = (function () {
     function ContentfulService(_http) {
         this._http = _http;
@@ -34,6 +34,14 @@ var ContentfulService = (function () {
     };
     ContentfulService.prototype.getEntry = function (entryId) {
         return this.request("/entries/" + entryId);
+    };
+    ContentfulService.prototype.getEntryBySlug = function (type, slug) {
+        var queryParams = new http_1.URLSearchParams();
+        queryParams.set('content_type', type);
+        queryParams.set('fields.slug', slug);
+        queryParams.set('limit', '1');
+        // TODO should return only one result
+        return this.request('/entries/', queryParams);
     };
     ContentfulService.prototype.request = function (path, queryParams) {
         if (queryParams === void 0) { queryParams = new http_1.URLSearchParams(); }
