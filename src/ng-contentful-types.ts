@@ -21,6 +21,7 @@ export module ContentfulTypes {
     skip: number;
     limit: number;
     items: Array<T>;
+    includes: any;
   }
 
   export interface Field {
