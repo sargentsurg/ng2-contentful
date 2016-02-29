@@ -32,7 +32,7 @@ module.exports = function(config) {
     webpack: {
       resolve: {
         root: [path.resolve(cwd)],
-        modulesDirectories: ['node_modules', 'demo', 'components', 'test', '.'],
+        modulesDirectories: ['node_modules', 'demo', 'src', 'test', '.'],
         extensions: ['', '.ts', '.js', '.css']
       },
       module: {
@@ -43,7 +43,7 @@ module.exports = function(config) {
           // instrument only testing sources with Istanbul
           {
             test: /\.(js|ts)$/,
-            include: root('components'),
+            include: root('src'),
             loader: 'istanbul-instrumenter-loader',
             exclude: [
               /\.e2e\.ts$/,
