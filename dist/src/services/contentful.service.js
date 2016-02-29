@@ -44,6 +44,19 @@ var ContentfulService = (function () {
         // TODO should return only one result
         return this.request('/entries/', queryParams);
     };
+    ContentfulService.prototype.searchEntries = function (type) {
+        var searchItems = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            searchItems[_i - 1] = arguments[_i];
+        }
+        var queryParams = new http_1.URLSearchParams();
+        queryParams.set('content_type', type);
+        for (var _a = 0, searchItems_1 = searchItems; _a < searchItems_1.length; _a++) {
+            var searchItem = searchItems_1[_a];
+            queryParams.set(searchItem.param, searchItem.value);
+        }
+        return this.request('/entries/', queryParams);
+    };
     ContentfulService.prototype.withLinksLevel = function (level) {
         this._linksLevel = level;
         return this;
