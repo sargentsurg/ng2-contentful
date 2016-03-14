@@ -1,8 +1,8 @@
 import {Component, OnInit} from 'angular2/core';
 import {CanActivate, RouteParams} from 'angular2/router';
 import {CanSeeContentfulData} from '../app.tools';
-import {ContentfulService} from 'ng2-contentful';
-import {ContentfulTypes as ct} from 'ng2-contentful';
+import {ContentfulIterableResponse, ContentfulCommon} from '../../../../src/ng-contentful-types';
+import {ContentfulService} from '../../../../src/services/contentful.service';
 
 @Component({
   providers: [ContentfulService],
@@ -24,7 +24,7 @@ import {ContentfulTypes as ct} from 'ng2-contentful';
 export class EntriesComponent implements OnInit {
   static RoutingName = 'Entries';
 
-  private entries: ct.Common<any>[];
+  private entries: ContentfulCommon<any>[];
 
   constructor(private _contentfulService: ContentfulService,
               private _routeParams: RouteParams) {
@@ -33,10 +33,12 @@ export class EntriesComponent implements OnInit {
   ngOnInit(): any {
     let contentType = this._routeParams.get('contentType');
     this._contentfulService
+      .create()
       .getEntriesByType(contentType)
+      .commit()
       .subscribe(
         response => {
-          this.entries = (<ct.IterableResponse<ct.Common<any>>> response.json()).items;
+          this.entries = (<ContentfulIterableResponse<ContentfulCommon<any>>> response.json()).items;
           console.log(this.entries);
         }
       );

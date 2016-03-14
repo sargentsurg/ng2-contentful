@@ -10,13 +10,13 @@
     "declaration": true,
     "noLib": false,
     "listFiles": false,
-    "outDir": "dist"
+    "outDir": "dist/ng2-contentful"
   },
   "exclude": [
     "node_modules"
   ],
   "files": [
     "./typings/browser.d.ts",
-    "./ng2-contentful.ts"
+    "./src/index.ts"
   ]
 }

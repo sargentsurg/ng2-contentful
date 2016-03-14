@@ -8,99 +8,149 @@ export interface SearchItem {
   value: string
 }
 
-@Injectable()
-export class ContentfulService {
+/**
+ *
+ */
+export class ContentfulRequest {
   private static HOST = 'cdn.contentful.com';
-  private _linksLevel = 1;
+  private requestUrl: string;
+  private queryParams: URLSearchParams = new URLSearchParams();
 
   constructor(private _http: Http) {
-  }
-
-  getContentTypes(): Observable<Response> {
-    return this.request('/content_types/');
-  }
-
-  getContentType(contentTypeId: String): Observable<Response> {
-    return this.request(`/content_types/${contentTypeId}`);
-  }
-
-  getAssets(): Observable<Response> {
-    return this.request('/assets/');
-  }
-
-  getAsset(assetId: String): Observable<Response> {
-    return this.request(`/assets/${assetId}`);
-  }
-
-  getEntriesByType(type: string): Observable<Response> {
-    let queryParams = new URLSearchParams();
-    queryParams.set(
-      'content_type', type
+    this.queryParams.set(
+      'access_token', Ng2ContentfulConfig.config.accessToken
     );
-    return this.request('/entries/', queryParams);
   }
 
-  getEntry(entryId: string): Observable<Response> {
-    return this.request(`/entries/${entryId}`);
-  }
-
-  getEntryBySlug(type: string, slug: string): Observable<Response> {
-    let queryParams = new URLSearchParams();
-    queryParams.set(
-      'content_type', type
-    );
-    queryParams.set(
-      'fields.slug', slug
-    );
-    queryParams.set(
-      'limit', '1'
-    );
-    // TODO should return only one result
-    return this.request('/entries/', queryParams);
-  }
-
-  searchEntries(type: string, ...searchItems: SearchItem[]): Observable<Response> {
-    let queryParams = new URLSearchParams();
-    queryParams.set(
-      'content_type', type
-    );
-    for (let searchItem of searchItems) {
-      queryParams.set(searchItem.param, searchItem.value);
-    }
-    return this.request('/entries/', queryParams);
-  }
-
-  withLinksLevel(level: number): ContentfulService {
-    this._linksLevel = level;
+  getContentTypes(): ContentfulRequest {
+    this.requestUrl = '/content_types/';
     return this;
   }
 
-  private request(path: String, queryParams: URLSearchParams = new URLSearchParams()): Observable<Response> {
+  getContentType(contentTypeId: String): ContentfulRequest {
+    this.requestUrl = `/content_types/${contentTypeId}`;
+    return this;
+  }
+
+  /**
+   *
+   * @returns {ContentfulRequest}
+   */
+  getAssets(): ContentfulRequest {
+    this.requestUrl = '/assets/';
+    return this;
+  }
+
+  /**
+   *
+   * @param assetId
+   * @returns {ContentfulRequest}
+   */
+  getAsset(assetId: String): ContentfulRequest {
+    this.requestUrl = `/assets/${assetId}`;
+    return this;
+  }
+
+  /**
+   * Based on
+   * @param type - contentful content type identifier
+   * @returns {ContentfulRequest}
+   */
+  getEntriesByType(type: string): ContentfulRequest {
+    this.requestUrl = '/entries/';
+    this.queryParams.set('content_type', type);
+    return this;
+  }
+
+  /**
+   *  Fetch entry by entryID
+   *  Based on https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/entries/entry/get-a-single-entry
+   * @param entryId - contentful entry id
+   * @returns {ContentfulRequest}
+   */
+  getEntry(entryId: string): ContentfulRequest {
+    this.requestUrl = `/entries/${entryId}`;
+    return this;
+  }
+
+  /**
+   *
+   * @param type
+   * @param slug
+   * @returns {ContentfulRequest}
+   */
+  getEntryBySlug(type: string, slug: string): ContentfulRequest {
+    this.queryParams.set('content_type', type);
+    this.queryParams.set('fields.slug', slug);
+    this.requestUrl = '/entries/';
+    this.limit(1);
+    return this;
+  }
+
+  /**
+   *
+   * @param type
+   * @param searchItems
+   * @returns {ContentfulRequest}
+   */
+  searchEntries(type: string, ...searchItems: SearchItem[]): ContentfulRequest {
+    this.queryParams.set(
+      'content_type', type
+    );
+    for (let searchItem of searchItems) {
+      this.queryParams.set(searchItem.param, searchItem.value);
+    }
+    this.requestUrl = '/entries/';
+    return this;
+  }
+
+  include(include: number): ContentfulRequest {
+    this.queryParams.set('include', include.toString());
+    return this;
+  }
+
+  limit(limit: number): ContentfulRequest {
+    this.queryParams.set('limit', limit.toString());
+    return this;
+  }
+
+  order(order: string): ContentfulRequest {
+    this.queryParams.set('order', order);
+    return this;
+  }
+
+  /**
+   * Call request to the contentful's API
+   * @returns {Observable<Response>}
+   */
+  commit(): Observable<Response> {
     let url = [
       'https://',
-      ContentfulService.HOST,
+      ContentfulRequest.HOST,
       '/spaces/',
       Ng2ContentfulConfig.config.space,
-      path
+      this.requestUrl
     ].join('');
-
-    queryParams.set(
-      'access_token', Ng2ContentfulConfig.config.accessToken
-    );
-    // set query for links level - this is temporary
-    queryParams.set('include', this._linksLevel.toString());
-    // reset to default value
-    this._linksLevel = 1;
 
     let options: RequestOptionsArgs = {
       headers: new Headers({
         'Content-Type': 'application/vnd.contentful.delivery.v1+json'
       }),
-      search: queryParams
+      search: this.queryParams
     };
+    return this._http.get(url, options);
+  }
+}
 
-    return this._http
-      .get(url, options)
-      ;
+@Injectable()
+export class ContentfulService {
+  constructor(private _http: Http) {
+  }
+
+  /**
+   *
+   */
+  public create(): ContentfulRequest {
+    return new ContentfulRequest(this._http);
   }
 }

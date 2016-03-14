@@ -2,8 +2,8 @@ import 'rxjs/add/operator/map';
 import {Component, OnInit} from 'angular2/core';
 import {CanActivate, ROUTER_DIRECTIVES} from 'angular2/router';
 import {CanSeeContentfulData} from '../app.tools';
-import {ContentfulService} from 'ng2-contentful.ts';
-import {ContentfulTypes as ct} from 'ng2-contentful.ts';
+import {ContentfulIterableResponse, ContentfulCommon, ContentfulContentType} from '../../../../src/ng-contentful-types';
+import {ContentfulService} from '../../../../src/services/contentful.service';
 
 
 @Component({
@@ -30,7 +30,7 @@ export class ContentTypesComponent implements OnInit {
   static RoutingName = 'ContentTypes';
 
   //noinspection JSMismatchedCollectionQueryUpdate
-  private contentTypes: Array<ct.ContentType>;
+  private contentTypes: ContentfulCommon<ContentfulContentType>[];
   private error: string;
 
   constructor(private _contentfulService: ContentfulService) {
@@ -38,10 +38,12 @@ export class ContentTypesComponent implements OnInit {
 
   ngOnInit(): any {
     this._contentfulService
+      .create()
       .getContentTypes()
+      .commit()
       .subscribe(
         response => {
-          this.contentTypes = (<ct.IterableResponse<ct.ContentType>> response.json()).items;
+          this.contentTypes = (<ContentfulIterableResponse<ContentfulCommon<ContentfulContentType>>> response.json()).items;
         },
         error => {
           this.error = JSON.stringify(error.json());

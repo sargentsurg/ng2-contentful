@@ -1,8 +1,8 @@
 import {Component, OnInit} from 'angular2/core';
 import {CanSeeContentfulData} from '../app.tools';
 import {CanActivate} from 'angular2/router';
-import {ContentfulTypes as ct} from 'ng2-contentful.ts';
-import {ContentfulService} from 'ng2-contentful.ts';
+import {ContentfulCommon, ContentfulAsset} from '../../../../src/ng-contentful-types';
+import {ContentfulService} from '../../../../src/services/contentful.service';
 
 
 @Component({
@@ -27,18 +27,19 @@ import {ContentfulService} from 'ng2-contentful.ts';
 export class AssetsComponent implements OnInit {
   static RoutingName = 'Assets';
 
-  private assets: ct.Common<ct.Asset>[];
+  private assets: ContentfulCommon<ContentfulAsset>[];
   private error: string;
 
   constructor(private _contentfulService: ContentfulService) {
   }
 
   ngOnInit(): any {
-    this._contentfulService
+    this._contentfulService.create()
       .getAssets()
+      .commit()
       .subscribe(
         response => {
-          this.assets = <ct.Common<ct.Asset>[]> response.json().items;
+          this.assets = <ContentfulCommon<ContentfulAsset>[]> response.json().items;
         },
         error => {
           this.error = JSON.stringify(error.json());

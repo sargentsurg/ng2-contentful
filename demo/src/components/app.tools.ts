@@ -1,8 +1,8 @@
 
 import {appInjector} from '../app-injector';
 import {Router} from 'angular2/router';
-import {Ng2ContentfulConfig} from 'ng2-contentful.ts';
 import {CredentialsComponent} from './credentials/credentials.component';
+import {Ng2ContentfulConfig} from '../../../src/ng2-contentful-config';
 /**
  * Not the best place for that
  */
