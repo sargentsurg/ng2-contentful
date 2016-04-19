@@ -2,6 +2,7 @@ export interface IContentfulConfig {
   space: string;
   accessToken: string;
   secure?: boolean;
+  host?: string;
 }
 
 
