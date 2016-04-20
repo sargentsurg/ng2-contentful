@@ -22,6 +22,13 @@ import {IContentfulConfig, Ng2ContentfulConfig} from '../../../../src/ng2-conten
                name="accessToken"
                [(ngModel)]="model.accessToken"/>
       </div>
+      
+      <div class="field">
+        <label for="host">Host (optional)</label>
+        <input type="text"
+               name="host"
+               [(ngModel)]="model.host"/>
+      </div>
       <button (click)="saveConfig()">
         Save
       </button>
@@ -52,7 +59,8 @@ export class CredentialsComponent implements OnInit {
 
     Ng2ContentfulConfig.config = {
       space: this.model.space,
-      accessToken: this.model.accessToken
+      accessToken: this.model.accessToken,
+      host: this.model.host
     };
 
     this._router.navigate([ContentTypesComponent.RoutingName]);

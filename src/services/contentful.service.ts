@@ -12,7 +12,7 @@ export interface SearchItem {
  *
  */
 export class ContentfulRequest {
-  private static HOST = 'cdn.contentful.com';
+  private static HOST: string = 'cdn.contentful.com';
   private requestUrl: string;
   private queryParams: URLSearchParams = new URLSearchParams();
 
@@ -126,7 +126,7 @@ export class ContentfulRequest {
   commit(): Observable<Response> {
     let url = [
       'https://',
-      ContentfulRequest.HOST,
+      Ng2ContentfulConfig.config.host || ContentfulRequest.HOST,
       '/spaces/',
       Ng2ContentfulConfig.config.space,
       this.requestUrl
